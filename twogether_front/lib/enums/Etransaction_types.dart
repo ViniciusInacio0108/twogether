@@ -1,0 +1,1 @@
+enum EtransactionTypes { income, outcome }
