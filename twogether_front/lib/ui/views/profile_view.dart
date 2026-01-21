@@ -17,7 +17,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   void _onPressedUserProfile(UserModel user) {
     context.read<ProfilesController>().selectCurrentUser(user);
-    // navigate home
+    Navigator.pushReplacementNamed(context, MyAppRouting.HOME);
   }
 
   void _onPressedCreateNewProfile() {

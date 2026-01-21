@@ -3,22 +3,22 @@ import 'package:twogether_front/models/transaction_model.dart';
 
 class BalanceModel {
   double _currentBalance = 0.0;
-  Map<String, TransactionModel> _incomesById = {};
-  Map<String, TransactionModel> _outcomesById = {};
+  Map<String, Transaction> _incomesById = {};
+  Map<String, Transaction> _outcomesById = {};
 
   BalanceModel();
 
   double get currentBalance => _currentBalance;
-  Map<String, TransactionModel> get incomesById => _incomesById;
-  Map<String, TransactionModel> get outcomerById => _outcomesById;
+  Map<String, Transaction> get incomesById => _incomesById;
+  Map<String, Transaction> get outcomerById => _outcomesById;
 
-  void addTransaction(TransactionModel transaction) {
+  void addTransaction(Transaction transaction) {
     transaction.type == EtransactionTypes.income
         ? _addIncomeTransaction(transaction)
         : _addOutcomeTransaction(transaction);
   }
 
-  void _addIncomeTransaction(TransactionModel transaction) {
+  void _addIncomeTransaction(Transaction transaction) {
     _incomesById.putIfAbsent(
       transaction.id,
       () => transaction,
@@ -26,7 +26,7 @@ class BalanceModel {
     _currentBalance += transaction.value;
   }
 
-  void _addOutcomeTransaction(TransactionModel transaction) {
+  void _addOutcomeTransaction(Transaction transaction) {
     if (transaction.value > _currentBalance) {
       throw Exception(
           "O valor a ser retirado não pode ser maior que o valor do balanço!");

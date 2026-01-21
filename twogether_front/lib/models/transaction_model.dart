@@ -1,21 +1,33 @@
 import 'package:twogether_front/enums/Etransaction_types.dart';
-import 'package:twogether_front/models/user_model.dart';
 import 'package:uuid/uuid.dart';
 
-class TransactionModel {
+class Transaction {
   final String _id;
   final double _value;
   final DateTime _date;
-  UserModel owner;
+  String ownerId;
   EtransactionTypes type;
 
-  TransactionModel({
-    required value,
-    required this.owner,
-    required this.type,
-  })  : _date = DateTime.now(),
+  Transaction(
+      {required value,
+      required this.ownerId,
+      required this.type,
+      required date})
+      : _date = date,
         _value = _checkTransactionValueAndReturnIt(value),
         _id = const Uuid().v4();
+
+  factory Transaction.nowDate({
+    required value,
+    required ownerId,
+    required type,
+  }) =>
+      Transaction(
+        value: value,
+        ownerId: ownerId,
+        type: type,
+        date: DateTime.now(),
+      );
 
   DateTime get date => _date;
 
@@ -29,5 +41,10 @@ class TransactionModel {
     }
 
     return value;
+  }
+
+  DateTime getDayKey() {
+    final date = this.date;
+    return DateTime(date.year, date.month, date.day);
   }
 }

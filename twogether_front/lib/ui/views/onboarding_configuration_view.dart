@@ -45,13 +45,17 @@ class OnboardingConfigurationView extends StatelessWidget {
               const SizedBox(height: 24),
               TextFormField(
                 controller: _maxDailyController,
-                decoration: const InputDecoration(labelText: "Limite diário"),
+                decoration: const InputDecoration(labelText: "Quanto sobra"),
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.done,
               ),
               const SizedBox(height: 12),
               const Text(
-                "Quanto deseja gastar por dia no máximo. Dica: você também pode dividir seu salário por 30.",
+                "Quanto tem sobrando por mês depois de diminuir os custos fixos e 15% de investimento?",
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "Ex: R\$2500 de salário, R\$1500 de custos fixos, R\$375 de investimentos. Me sobra R\$625 para o mês.",
               ),
               const Spacer(),
               Padding(
